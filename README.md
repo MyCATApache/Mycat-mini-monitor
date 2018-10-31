@@ -17,7 +17,7 @@
         cleanInteval: 86400
         
 ## 打包：
-mvn clean package。
+mvn clean package
 
 ## 运行：
 java -jar monitor-1.0.0.war
