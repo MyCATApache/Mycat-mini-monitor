@@ -68,8 +68,8 @@ public class JmxMetricFetcherThread implements Runnable {
                     long committedMemory = memoryUsage.getCommitted();
                     long maxMemory = memoryUsage.getMax();
                     BigDecimal processCpuLoad = new BigDecimal(Double.toString(operatingSystemMXBean.getProcessCpuLoad()));
-                    BigDecimal systemCpuLoad = new BigDecimal(Double.toString(operatingSystemMXBean.getProcessCpuLoad()));
-                    BigDecimal systemLoadAverage = new BigDecimal(Double.toString(operatingSystemMXBean.getProcessCpuLoad()));
+                    BigDecimal systemCpuLoad = new BigDecimal(Double.toString(operatingSystemMXBean.getSystemCpuLoad()));
+                    BigDecimal systemLoadAverage = new BigDecimal(Double.toString(operatingSystemMXBean.getSystemLoadAverage()));
                     int duration = (int) (System.currentTimeMillis() - startTimeMillis);
                     JmxMetric jmxMetric = new JmxMetric()
                             .setIp(escapeIps[i])
