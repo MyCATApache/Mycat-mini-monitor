@@ -25,6 +25,8 @@ mybatis:
   config-location: classpath:mybatis.xml
 
 monitor:
-  ips: 10.0.0.1, 10.0.0.2, 10.0.0.3
+  ips: 10.0.5.151
   fetchInteval: 10
   cleanInteval: 86400
+  showCpuChart: true
+  showMemeryChart: false

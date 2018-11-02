@@ -35,8 +35,12 @@
             }
         </c:forEach>
         <c:forEach var="ip" items="${ips}">
-            ipCpuChart.${ip}.setOption(getCpuOption("${ip}"), true);
-            ipMemeryChart.${ip}.setOption(getMemeryOption("${ip}"), true);
+            if (${showCpuChart}) {
+                ipCpuChart.${ip}.setOption(getCpuOption("${ip}"), true);
+            }
+            if (${showMemeryChart}) {
+                ipMemeryChart.${ip}.setOption(getMemeryOption("${ip}"), true);
+            }
         </c:forEach>
         setInterval(function () {
             $.ajax({
