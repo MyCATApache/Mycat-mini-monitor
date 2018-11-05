@@ -15,6 +15,16 @@
 
     monitor:
         cleanInteval: 86400
+
+是否监控CPU例如
+
+    monitor:
+        showCpuChart: true
+        
+是否监控Memery例如
+
+    monitor:
+        showMemeryChart: true
         
 ## 打包：
 mvn clean package

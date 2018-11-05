@@ -23,18 +23,24 @@
             ipMemeryChart.${ip} = echarts.init(document.getElementById('${ip}MemeryContainer'));
         </c:forEach>
         <c:forEach var="jmxMetric" items="${jmxMetrics}">
-            lastJmxMetricId = ${jmxMetric.id};
-            var createdDate = new Date('${jmxMetric.createdDate}');
-            ipJmxMetric.${jmxMetric.ip}.usedMemorys.push([createdDate, new Number(${jmxMetric.usedMemory / (1024 * 1024 * 1024)}).toFixed(2)]);
-            ipJmxMetric.${jmxMetric.ip}.committedMemorys.push([createdDate, new Number(${jmxMetric.committedMemory / (1024 * 1024 * 1024)}).toFixed(2)]);
-            ipJmxMetric.${jmxMetric.ip}.maxMemorys.push([createdDate, new Number(${jmxMetric.maxMemory / (1024 * 1024 * 1024)}).toFixed(2)]);
-            ipJmxMetric.${jmxMetric.ip}.processCpuLoads.push([createdDate, ${jmxMetric.processCpuLoad * 100}]);
-            ipJmxMetric.${jmxMetric.ip}.systemCpuLoads.push([createdDate, ${jmxMetric.systemCpuLoad * 100}]);
-            ipJmxMetric.${jmxMetric.ip}.systemLoadAverages.push([createdDate, ${jmxMetric.systemLoadAverage * 100}]);
+            if (ipJmxMetric.${jmxMetric.ip}) {
+                lastJmxMetricId = ${jmxMetric.id};
+                var createdDate = new Date('${jmxMetric.createdDate}');
+                ipJmxMetric.${jmxMetric.ip}.usedMemorys.push([createdDate, new Number(${jmxMetric.usedMemory / (1024 * 1024 * 1024)}).toFixed(2)]);
+                ipJmxMetric.${jmxMetric.ip}.committedMemorys.push([createdDate, new Number(${jmxMetric.committedMemory / (1024 * 1024 * 1024)}).toFixed(2)]);
+                ipJmxMetric.${jmxMetric.ip}.maxMemorys.push([createdDate, new Number(${jmxMetric.maxMemory / (1024 * 1024 * 1024)}).toFixed(2)]);
+                ipJmxMetric.${jmxMetric.ip}.processCpuLoads.push([createdDate, ${jmxMetric.processCpuLoad * 100}]);
+                ipJmxMetric.${jmxMetric.ip}.systemCpuLoads.push([createdDate, ${jmxMetric.systemCpuLoad * 100}]);
+                ipJmxMetric.${jmxMetric.ip}.systemLoadAverages.push([createdDate, ${jmxMetric.systemLoadAverage * 100}]);
+            }
         </c:forEach>
         <c:forEach var="ip" items="${ips}">
-            ipCpuChart.${ip}.setOption(getCpuOption("${ip}"), true);
-            ipMemeryChart.${ip}.setOption(getMemeryOption("${ip}"), true);
+            if (${showCpuChart}) {
+                ipCpuChart.${ip}.setOption(getCpuOption("${ip}"), true);
+            }
+            if (${showMemeryChart}) {
+                ipMemeryChart.${ip}.setOption(getMemeryOption("${ip}"), true);
+            }
         </c:forEach>
         setInterval(function () {
             $.ajax({
